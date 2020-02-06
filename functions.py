@@ -1,4 +1,6 @@
 import pandas as pd
+import seaborn as sns
+import matplotlib.pyplot as plt
 from string import ascii_letters, digits
 from surprise.model_selection import cross_validate
 
