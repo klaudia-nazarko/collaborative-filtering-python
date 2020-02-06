@@ -1,3 +1,7 @@
+import pandas as pd
+from string import ascii_letters, digits
+from surprise.model_selection import cross_validate
+
 ### DataFrame operations
 
 def k_from_details(details):
@@ -15,6 +19,21 @@ def short_title(title, max_len=40):
             short_title = ' '.join([short_title, title[i]])
     short_title = short_title.strip()
     return short_title
+
+def ascii_check(item):
+    for letter in str(item):
+        if letter not in ascii_letters + digits:
+            return 1
+        else:
+            return 0
+
+def ascii_check_bulk(df):
+    for col in df.columns:
+        print('items with non-ascii characters in %s: %d' % (col, df[col].apply(ascii_check).sum()))
+    print('')
+
+def colname_fix(colname):
+    return colname.lower().replace('-','_')
 
 ### Model-related functions
 
