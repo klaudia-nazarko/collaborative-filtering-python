@@ -42,13 +42,13 @@ def colname_fix(colname):
 def get_model_name(model):
     return str(model).split('.')[-1].split(' ')[0].replace("'>", "")
 
-def cv_multiple_models(data, models_dict):
+def cv_multiple_models(data, models_dict, cv=3):
     results = pd.DataFrame()
 
     for model_name, model in models_dict.items():
         print('\n---> CV for %s...' % model_name)
 
-        cv_results = cross_validate(model, data)
+        cv_results = cross_validate(model, data, cv=cv)
         tmp = pd.DataFrame(cv_results).mean()
         tmp['model'] = model_name
         results = results.append(tmp, ignore_index=True)
