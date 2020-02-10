@@ -37,6 +37,45 @@ def ascii_check_bulk(df):
 def colname_fix(colname):
     return colname.lower().replace('-','_')
 
+### New DataFrames
+
+def df_dist(df, colname, norm=False):
+    new_df = df[colname].value_counts(normalize=norm).reset_index()
+    new_df.columns = [colname, 'count']
+    return new_df
+
+def books_groupby(df, column, new_colname):
+    df_groupby = df.groupby(column).agg({'isbn': 'count', 'book_rating': 'mean'}).reset_index()
+    df_groupby.columns = [new_colname, 'count', 'avg_rating']
+    return df_groupby
+
+### Visualizations
+
+def draw_distribution(data, title_part, threshold=20):
+    fig, (ax1, ax2) = plt.subplots(nrows=1, ncols=2, figsize=(14, 4))
+
+    sns.distplot(data['count'], color='#2f6194', ax=ax1)
+    ax1.set_title('Distribution of number of ratings per %s' % title_part)
+
+    sns.countplot(data[data['count']<=threshold]['count'], color='#2f6194', ax=ax2)
+    ax2.set_title('Distribution of number of ratings per %s (<= %d ratings)' % (title_part, threshold))
+
+    plt.show()
+
+def draw_top_chart(data, x, y_list, title):
+    fig, ax1 = plt.subplots(figsize=(14, 6))
+    plt.xticks(rotation=90)
+
+    palette = sns.color_palette("RdBu", len(data))
+
+    sns.barplot(x=x, y=y_list[0], data=data, palette=palette, ax=ax1)
+    ax1.set_title(title)
+
+    ax2 = ax1.twinx()
+    sns.scatterplot(x=x, y=y_list[1], data=data, color='black', ax=ax2)
+
+    plt.show()
+
 ### Model-related functions
 
 def get_model_name(model):
