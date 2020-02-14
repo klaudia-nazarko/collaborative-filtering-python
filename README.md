@@ -22,3 +22,12 @@ The main focus of this repository is to build collaborative filtering recommende
 2. [**Exploratory Data Analysis of Book-Crossing dataset**](book-crossing-eda.ipynb) - the analysis provides insights about distribution of ratings, most popular readings and characteristics of users giving the scores.
 3. [**Memory-based approach to Collaborative Filtering**](collaborative-filtering-memory-based.ipynb) - memory based algorithms apply statistical techniques to the entire dataset to calculate the predictions. In this notebook two methods are compared (user-user and user-item) and the model is optimized to provide the best predictions.
 4. [**Model-based approach to Collaborative Filtering**](collaborative-filtering-model-based.ipynb) - model based approach involves building machine learning algorithms to predict user's ratings. In this notebook SVD and NMF methods are compared and the model is optimized to provide the best predictions.
+
+------
+
+**Reference:**
+
+1. https://surprise.readthedocs.io/en/stable/getting_started.html#getting-started
+2. https://realpython.com/build-recommendation-engine-collaborative-filtering/
+3. https://towardsdatascience.com/various-implementations-of-collaborative-filtering-100385c6dfe0
+4. https://towardsdatascience.com/building-and-testing-recommender-systems-with-surprise-step-by-step-d4ba702ef80b
